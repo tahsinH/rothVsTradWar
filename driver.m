@@ -11,7 +11,8 @@ currentRoth = 100*1000; % current roth 401k balance
 numYears = 30;  % number of years to invest
 
 % do you expect taxes to be same or slightly lower or do you expect them to be higher
-shouldFutureRateBeSameOrLower = false;  
+shouldFutureRateBeSame = true;  
+
 
 counter = 1; 
 for i = contributeRate:-1:6 % assuming ppl put in atleast 6% to get company match
@@ -36,7 +37,7 @@ for i = contributeRate:-1:6 % assuming ppl put in atleast 6% to get company matc
 end
 
 [currMarginalTaxBracket, currTotalTax] = calculateTaxBracket(currTaxable_income, true);
-[futureMarginalTaxBracket, futTotalTax] = calculateTaxBracket(predicted_taxable_income, shouldFutureRateBeSameOrLower);
+[futureMarginalTaxBracket, futTotalTax] = calculateTaxBracket(predicted_taxable_income, shouldFutureRateBeSame);
 
 tradPercent = tradPercentange';
 rothPercent = rothPercentage';
