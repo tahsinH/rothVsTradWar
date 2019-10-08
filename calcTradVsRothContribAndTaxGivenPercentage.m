@@ -11,6 +11,11 @@ tradEmployee = currentEarningsPerYear * tradPercentageToContribute/100;
 trad = employer + tradEmployee;
 roth = currentEarningsPerYear * (totalPercentangeToContribute - tradPercentageToContribute)/100;
 
+if (tradEmployee + roth) > 19500*2 % 401k maxium(well sort of, not accounting for after-tax 401k here)
+    error("Exceeding maximum allowed total% %d with trad% %d", totalPercentangeToContribute, tradPercentageToContribute);
+end
+
+
 % standard deduction for married filing jointly
 standardDeduction = 24400; 
 
