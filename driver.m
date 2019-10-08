@@ -27,6 +27,7 @@ for i = contributeRate:-1:6 % assuming ppl put in atleast 6% to get company matc
             tradPercentange(counter));
         [predicted_taxable_income(counter), ...
             predicted_roth_income(counter), ...
+            socialSecurityNonTaxable(counter), ...
             predicted_trad_total(counter), ...
             predicted_roth_total(counter)] = ...
             preditIncomeAndBalance(trad(counter), currentTrad, roth(counter), currentRoth, numYears);
@@ -42,13 +43,14 @@ end
 tradPercent = tradPercentange';
 rothPercent = rothPercentage';
 futtaxable_income  = int32(predicted_taxable_income');
+socialSecurityNonTaxable = int32(socialSecurityNonTaxable');
 roth_income =  int32(predicted_roth_income');
 trad_total  = int32(predicted_trad_total');
 roth_total  = int32(predicted_roth_total');
 totalPercent = tradPercent + rothPercent; 
 futTotalTax = int32(futTotalTax');
 currTotalTax = int32(currTotalTax');
-total_income = futtaxable_income + roth_income - futTotalTax;
+total_income = futtaxable_income + roth_income - futTotalTax + socialSecurityNonTaxable;
 currTaxable_income = int32(currTaxable_income') - currTotalTax;
 currTax = int8(currMarginalTaxBracket');
 futTax = int8(futureMarginalTaxBracket');
