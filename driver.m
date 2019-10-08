@@ -1,13 +1,13 @@
 
 function out = driver()
-spouse1Earning = 100*1000; 
-spouse2Earning = 100*1000;
+spouse1Earning = 140*1000; 
+spouse2Earning = 105*1000;
 
 % what is your 401k contribution rate
-contributeRate = 12;
+maxContributeRate = 12;
 
-currentTrad = 100*1000; % current traditional 401k balance
-currentRoth = 100*1000; % current roth 401k balance
+currentTrad = 240*1000; % current traditional 401k balance
+currentRoth = 80*1000; % current roth 401k balance
 numYears = 30;  % number of years to invest
 
 % do you expect taxes to be same or slightly lower or do you expect them to be higher
@@ -17,7 +17,7 @@ shouldFutureRateBeSame = false;
 
 
 counter = 1; 
-for i = contributeRate:-1:6 % assuming ppl put in atleast 6% to get company match
+for i = maxContributeRate:-1:6 % assuming ppl put in atleast 6% to get company match
     totalPercentage = i;
     for j = 0:totalPercentage
         tradPercentange(counter) = j; 
@@ -55,17 +55,18 @@ futTotalTax = int32(futTotalTax');
 currTotalTax = int32(currTotalTax');
 total_income_afterTax = futtaxable_income + roth_income - futTotalTax + socialSecurityNonTaxable;
 currTaxable_income = int32(currTaxable_income') - currTotalTax;
-currTax = int8(currMarginalTaxBracket');
-futTax = int8(futureMarginalTaxBracket');
+currBracket = int8(currMarginalTaxBracket');
+futBracket = int8(futureMarginalTaxBracket');
 
 out = table (totalPercent, ...
     tradPercent, ...
     rothPercent, ...
     currTaxable_income, ...
     futtaxable_income, ...
-    currTax, ...
-    futTax, ...  
+    currBracket, ...
+    futBracket, ...  
     roth_income, ...
+    futTotalTax, ...
     total_income_afterTax, ...
     trad_total, ...
     roth_total);
