@@ -6,7 +6,7 @@ spouse2Earning = 100*1000;
 % what is your 401k contribution rate
 contributeRate = 12;
 
-currentTrad = 200*1000; % current traditional 401k balance
+currentTrad = 100*1000; % current traditional 401k balance
 currentRoth = 100*1000; % current roth 401k balance
 numYears = 30;  % number of years to invest
 
@@ -53,7 +53,7 @@ roth_total  = int32(predicted_roth_total');
 totalPercent = tradPercent + rothPercent; 
 futTotalTax = int32(futTotalTax');
 currTotalTax = int32(currTotalTax');
-total_income = futtaxable_income + roth_income - futTotalTax + socialSecurityNonTaxable;
+total_income_afterTax = futtaxable_income + roth_income - futTotalTax + socialSecurityNonTaxable;
 currTaxable_income = int32(currTaxable_income') - currTotalTax;
 currTax = int8(currMarginalTaxBracket');
 futTax = int8(futureMarginalTaxBracket');
@@ -66,6 +66,6 @@ out = table (totalPercent, ...
     currTax, ...
     futTax, ...  
     roth_income, ...
-    total_income, ...
+    total_income_afterTax, ...
     trad_total, ...
     roth_total);
