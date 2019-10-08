@@ -11,7 +11,9 @@ currentRoth = 100*1000; % current roth 401k balance
 numYears = 30;  % number of years to invest
 
 % do you expect taxes to be same or slightly lower or do you expect them to be higher
-shouldFutureRateBeSame = true;  
+% current higher tax rate assumption is a custom version with some fudging
+% of 2015 tax bracket
+shouldFutureRateBeSame = false;  
 
 
 counter = 1; 
@@ -25,6 +27,7 @@ for i = contributeRate:-1:6 % assuming ppl put in atleast 6% to get company matc
             spouse2Earning, ...
             totalPercentage, ...
             tradPercentange(counter));
+        
         [predicted_taxable_income(counter), ...
             predicted_roth_income(counter), ...
             socialSecurityNonTaxable(counter), ...
